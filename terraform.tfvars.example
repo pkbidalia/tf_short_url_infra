@@ -1,0 +1,81 @@
+# Default Variables (terraform.tfvars.example)
+# Copy this file to terraform.tfvars and customize for your environment
+
+# AWS Configuration
+aws_region = "us-east-1"
+environment = "production"
+app_name = "short-url"
+
+# Networking
+vpc_cidr = "10.0.0.0/16"
+availability_zones = 3
+
+# EC2 & Auto Scaling
+instance_type = "t3.medium"
+instance_count_per_az = 2
+min_size = 3
+max_size = 60
+desired_capacity = 9
+
+# Load Balancer
+alb_internal = false
+target_group_health_check_path = "/health"
+target_group_health_check_interval = 30
+
+# RDS Database
+rds_engine = "mysql"
+rds_engine_version = "8.0"
+rds_instance_class = "db.r5.large"
+rds_allocated_storage = 100
+rds_max_allocated_storage = 500
+rds_backup_retention_period = 30
+rds_db_name = "shorturl"
+rds_username = "admin"
+# IMPORTANT: Change this to a strong password before deploying!
+rds_password = "YourSecurePassword123!"
+rds_multi_az = true
+rds_enable_storage_encryption = true
+rds_enable_iam_database_authentication = true
+rds_performance_insights_enabled = true
+
+# ElastiCache (Redis)
+elasticache_engine = "redis"
+elasticache_engine_version = "7.0"
+elasticache_node_type = "cache.t3.micro"
+elasticache_num_cache_nodes = 3
+elasticache_automatic_failover_enabled = true
+elasticache_at_rest_encryption_enabled = true
+elasticache_transit_encryption_enabled = true
+# Optional: Set an auth token for Redis (min 16 chars)
+elasticache_auth_token = ""
+
+# CloudFront CDN
+cloudfront_enabled = true
+cloudfront_price_class = "PriceClass_100"
+cloudfront_default_ttl = 3600
+cloudfront_max_ttl = 86400
+cloudfront_compress = true
+# Optional: Set custom domain for CloudFront
+cloudfront_custom_domain = ""
+# Optional: ACM certificate ARN for custom domain
+cloudfront_acm_certificate_arn = ""
+
+# Route53 (DNS)
+# Optional: Set if you have an existing hosted zone
+route53_zone_id = ""
+# Optional: Domain name for Route53
+route53_domain_name = ""
+
+# Monitoring & Alerts
+enable_monitoring = true
+alarm_email = "your-email@example.com"
+alarm_actions_enabled = true
+cpu_alarm_threshold = 80
+
+# Additional Tags
+additional_tags = {
+  Owner       = "DevOps Team"
+  CostCenter  = "Engineering"
+  Environment = "Production"
+  Backup      = "Daily"
+}
