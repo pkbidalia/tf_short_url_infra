@@ -17,7 +17,7 @@ aws configure
 
 ### 2. Clone Repository
 ```bash
-git clone git@github.com:your-org/tf-short-url-infra.git
+git clone git@github.com:pkbidalia/tf-short-url-infra.git
 cd tf-short-url-infra
 ```
 
